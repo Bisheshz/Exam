@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Exam Countdown</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Added to center align the quotes */
+  height: 100vh;
+}
+
+.countdown-container {
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+.clock {
+  display: inline-block;
+  background-color: silver;
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.clock-digit {
+  display: inline-block;
+  font-size: 2em;
+  margin: 0 10px;
+  color: cyan;
+  text-shadow: 0 0 10px cyan;
+}
+
+.motivational-quote {
+  margin-top: 20px;
+  font-style: italic;
+  color: #333;
+}
+
+.developer-info {
+  margin-top: 20px;
+  color: #333;
+}
+</style>
+</head>
+<body>
+<div class="countdown-container">
+  <h1>  TIME FOR FINAL</h1>
+  <div class="clock" id="countdown"></div>
+</div>
+<div class="motivational-quote" id="motivation"></div>
+<p class="developer-info"> × By: Bishesh × </p>
+<script>
+function countdown() {
+  const examDate = new Date('2024-04-26T00:00:00');
+  const now = new Date().getTime();
+  const distance = examDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById('countdown').innerHTML = `
+    <span class="clock-digit">${days}</span> days
+    <span class="clock-digit">${hours}</span> hours
+    <span class="clock-digit">${minutes}</span> minutes
+    <span class="clock-digit">${seconds}</span> seconds`;
+}
+
+function displayMotivationalQuote() {
+  const quotes = [
+    "Small voices can make it major",
+    "Even the smallest step is progress",
+    "Every accomplishment starts with the decision to try",
+    "Believe you can and you're halfway there",
+    "You are capable of more than you know",
+    "Every moment is an opportunity to begin anew, let's make the most of this time.",
+    "Even the quietest voices have the power to make a significant impact.",
+    "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "You don't have to be great to start, but you have to start to be great.",
+    "The future belongs to those who believe in the beauty of their dreams.",
+    "The only limit to our realization of tomorrow will be our doubts of today.",
+    "The secret of getting ahead is getting started.",
+    "The only way to do great work is to love what you do.",
+    "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+    "Don't watch the clock; do what it does. Keep going.",
+    "It always seems impossible until it's done."
+  ];
+
+
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  const quote = quotes[randomIndex];
+  document.getElementById('motivation').innerHTML = `"${quote}"`;
+}
+
+countdown();
+setInterval(countdown, 1000);
+displayMotivationalQuote();
+</script>
+</body>
+</html>
